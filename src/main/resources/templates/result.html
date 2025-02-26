@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SQL Query Results</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #121212;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+
+
+        button {
+            background: #121212;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #121212;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            color: red;
+            font-size: 1.2em;
+        }
+
+        table {
+            background-color: #68a5b6;
+            width: 80%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #68a5b6;
+            text-align: center;
+        }
+
+        th {
+            background-color: #2c6975;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #d19155;
+        }
+
+        .back-link {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>SQL Query Results</h1>
+
+<p th:if="${message}" class="message" th:text="${message}"></p>
+
+<table th:if="${results != null}">
+    <thead>
+    <tr>
+
+        <th th:each="column : ${results[0].keySet()}">
+            <span th:text="${column}"></span>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${results}">
+        <td th:each="column : ${row.values()}" th:text="${column}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a class="back-link" href="/">Back to Home</a>
+
+</body>
+</html>

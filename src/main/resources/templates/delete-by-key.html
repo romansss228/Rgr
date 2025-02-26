@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Select Table to Delete by ID</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e;
+            color: #eaeaea;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            color: #00d9ff;
+            text-shadow: 0 0 20px #00d9ff;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            background: linear-gradient(45deg, #00d9ff, #0096c7);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 217, 255, 0.4);
+            transition: all 0.3s ease;
+            min-width: 180px;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #0096c7, #00d9ff);
+            box-shadow: 0 6px 20px rgba(0, 217, 255, 0.6);
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(0, 217, 255, 0.4);
+        }
+
+        .back-link {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #00d9ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #0096c7;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+
+            .back-link {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Select Table to Delete by ID</h1>
+<div class="button-container">
+    <button th:onclick="|window.location.href='/street-delete'|" aria-label="Delete from Street">Delete from Street</button>
+    <button th:onclick="|window.location.href='/house-delete'|" aria-label="Delete from House">Delete from House</button>
+    <button th:onclick="|window.location.href='/apartment-delete'|" aria-label="Delete from Apartment">Delete from Apartment</button>
+</div>
+
+<a class="back-link" href="/" aria-label="Back to the home page">Back to Home</a>
+</body>
+</html>

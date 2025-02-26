@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Street</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #121212;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #121212;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #121212;
+            text-align: center;
+        }
+
+        th {
+            background-color: #121212;
+            color: white;
+        }
+
+        td {
+            background-color: white;
+        }
+
+        input {
+            padding: 10px;
+            border: 2px solid #121212;
+            border-radius: 6px;
+            background-color: #ffffff;
+            color: #121212;
+            width: 250px;
+        }
+
+        button {
+            width: 140px;
+            height: 45px;
+            background: #27df40;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        button:hover {
+            background: #121212;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .delete-button {
+            background: linear-gradient(45deg, #ff3b3b, #c70000);
+            padding: 10px 15px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .delete-button:hover {
+            background: linear-gradient(45deg, #c70000, #ff3b3b);
+            transform: translateY(-2px);
+        }
+
+        .message {
+            color: green;
+            margin-top: 20px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 20px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            button {
+                font-size: 1em;
+                padding: 12px 22px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<h1>Edit Street</h1>
+
+<form th:action="@{/street-edit/update}" method="post">
+    <table>
+        <thead>
+        </thead>
+        <tbody>
+        <tr th:each="street : ${streets}">
+            <td th:text="${street.streetId}"></td>
+            <td>
+                <form th:action="@{/street-edit/update}" method="post">
+                    <input type="hidden" name="street_id" th:value="${street.streetId}" />
+
+                    <label for="street_name" class="label">Name:</label>
+                    <input id="street_name" type="text" name="street_name" th:value="${street.streetName}" required />
+
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/street-delete}" method="post">
+                    <input type="hidden" name="street_id" th:value="${street.streetId}" />
+                    <button type="submit" class="delete-button">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+<div th:if="${message}" th:text="${message}" class="message"></div>
+<div th:if="${error}" th:text="${error}" class="error-message"></div>
+
+<a href="/" style="display: block; text-align: center; color: #000000; text-decoration: none; font-size: 1.2em;">Back to Home</a>
+</body>
+</html>

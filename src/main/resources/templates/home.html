@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title th:text="${title}">Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #121212;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #121212;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            color: #555555;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .button-large {
+            background-color: #121212;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+
+        .button-large:hover {
+            background-color: #0056b3;
+        }
+
+        button {
+            background-color: #121212;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .user-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #121212;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 1.1em;
+        }
+
+        .logout {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #007BFF;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logout:hover {
+            color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+<h1 th:text="${title}">Welcome</h1>
+<p th:text="|Welcome to the ${title}!|"></p>
+
+<div class="user-info">
+    <span>Username: <span th:text="${username}"></span></span>
+    <span>Role: <span th:text="${role}"></span></span>
+    <a class="logout" href="/authorization-page">Logout</a>
+</div>
+
+<div class="button-container">
+    <button class="button-large" onclick="window.location.href='/create-entry'">Create Entry</button>
+    <button class="button-large" onclick="window.location.href='/select-table'">Read Table</button>
+    <button class="button-large" onclick="window.location.href='/edit-table'">Edit Table</button>
+    <button class="button-large" onclick="window.location.href='/request-table'">SQL Request</button>
+</div>
+</body>
+</html>
